@@ -1,4 +1,5 @@
-#import "/src/component.typ": component, interface
+#import "/src/component.typ": component
+#import "/src/interface.typ": interface
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, arc, line, rect
 

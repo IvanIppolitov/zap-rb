@@ -1,4 +1,4 @@
-#import "/src/component.typ": component, interface
+#import "/src/component.typ": component
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, circle, hide, line, mark, translate
 #import "/src/mini.typ": center-mark

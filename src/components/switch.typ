@@ -1,4 +1,5 @@
-#import "/src/component.typ": component, interface
+#import "/src/component.typ": component
+#import "/src/interface.typ": interface
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, circle, line, mark, rect, hide
 
@@ -13,7 +14,7 @@
     let draw(ctx, position, style) = {
         interface((-style.width / 2, -0.2), (style.width/2, 0.2), io: position.len() < 2)
 
-        line((-style.width/2,0), (radius: style.width / 2, angle: if closed { 0deg } else { style.angle }), ..style.at("wires"))
+        line((-style.width/2,0), (radius: style.width / 2, angle: if closed { 0deg } else { style.angle }), ..style.at("wire"))
     }
 
     // Componant call

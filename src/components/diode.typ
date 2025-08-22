@@ -1,7 +1,9 @@
-#import "/src/component.typ": component, interface
+#import "/src/component.typ": component
+#import "/src/interface.typ": interface
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, circle, line, polygon, scope, translate
 #import "/src/mini.typ": radiation-arrows
+#import "/src/components/wire.typ": wire
 
 #let diode(name, node, type: none, ..params) = {
     assert((type in ("emitting", "receiving", "tunnel", "zener", "schottky") or type == none), message: "type must be tunnel, zener, schottky, ...")
@@ -13,13 +15,18 @@
         tunnel-length: .1,
     )
 
+    let get-interface(style) = {
+        translate((-style.radius / 4, 0))
+        interface((-style.radius / 2, -style.radius), (style.radius, style.radius))
+        translate((+style.radius / 4, 0))
+    }
+
     // Drawing function
     let draw(ctx, position, style) = {
         translate((-style.radius / 4, 0))
-        interface((-style.radius / 2, -style.radius), (style.radius, style.radius), io: position.len() < 2)
 
         polygon((0, 0), 3, radius: style.radius, fill: white, ..style)
-        line((0deg, style.radius), (180deg, style.radius / 2), ..style.at("wires"))
+        wire((0deg, style.radius), (180deg, style.radius / 2))
 
         // Main cathode line (vertical)
         line((style.radius, -style.line), (style.radius, style.line), ..style)
@@ -54,7 +61,7 @@
     }
 
     // Component call
-    component("diode", name, node, draw: draw, style: style, ..params)
+    component("diode", name, node, draw: draw, get-interface: get-interface, style: style, ..params)
 }
 
 #let led(name, node, ..params) = diode(name, node, type: "emitting", ..params)

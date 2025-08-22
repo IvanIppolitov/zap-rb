@@ -1,4 +1,5 @@
-#import "/src/component.typ": component, interface
+#import "/src/component.typ": component
+#import "/src/interface.typ": interface
 #import "/src/dependencies.typ": cetz
 #import "/src/mini.typ": ac-sign
 #import cetz.draw: anchor, circle, content, line, mark, polygon, rect

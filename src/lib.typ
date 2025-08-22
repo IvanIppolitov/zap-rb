@@ -1,26 +1,26 @@
-// Export dependencies
+// Import dependencies
 #import "dependencies.typ": cetz
-#import cetz: canvas
 #import cetz.draw as draw
-#import cetz.draw: set-style
+#import "/src/canvas.typ": canvas, set-style, get-style, set-params
 
-// Export components
-#import "component.typ": component, interface
+// Import components
+#import "component.typ": component
+#import "interface.typ": interface
 
-// Export components
-#import "components/wires.typ": wire
-#import "components/nodes.typ": node
-#import "components/capacitors.typ": capacitor
-#import "components/diodes.typ": diode, led, photodiode, schottky, tunnel, zener
+// Import components
+#import "components/wire.typ": wire
+#import "components/node.typ": node
+#import "components/capacitor.typ": capacitor
+#import "components/diode.typ": diode, led, photodiode, schottky, tunnel, zener
 #import "components/opamp.typ": opamp
-#import "components/switches.typ": switch
-#import "components/fuses.typ": afuse, fuse
-#import "components/supplies.typ": earth, frame, ground, vcc, vee
-#import "components/inductors.typ": inductor
-#import "components/resistors.typ": heater, potentiometer, resistor, rheostat
-#import "components/sources.typ": acvsource, disource, dvsource, isource, vsource
-#import "components/motors.typ": acmotor, dcmotor
+#import "components/switch.typ": switch
+#import "components/fuse.typ": afuse, fuse
+#import "components/supply.typ": earth, frame, ground, vcc, vee
+#import "components/inductor.typ": inductor
+#import "components/resistor.typ": heater, potentiometer, resistor, rheostat
+#import "components/source.typ": acvsource, disource, dvsource, isource, vsource
+#import "components/motor.typ": acmotor, dcmotor
 
-// Export transistors
-#import "components/transistors/bjts.typ": bjt, npn, pnp
-#import "components/transistors/mosfets.typ": mosfet, nmos, nmosd, pmos, pmosd
+// Import transistors
+#import "components/transistors/bjt.typ": bjt, npn, pnp
+#import "components/transistors/mosfet.typ": mosfet, nmos, nmosd, pmos, pmosd

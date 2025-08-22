@@ -1,4 +1,5 @@
-#import "/src/component.typ": component, interface
+#import "/src/component.typ": component
+#import "/src/interface.typ": interface
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, line, polygon
 
@@ -13,7 +14,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        line((0, 0), (0, -style.distance), ..style.at("wires"))
+        line((0, 0), (0, -style.distance), ..style.at("wire"))
         polygon((0, -style.distance), 3, anchor: "north", radius: style.radius, angle: -90deg, name: "polygon", ..style)
 
         let (width, height) = cetz.util.measure(ctx, "polygon")
@@ -37,7 +38,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        line((0, 0), (0, -style.distance), ..style.at("wires"))
+        line((0, 0), (0, -style.distance), ..style.at("wire"))
         let delta = style.width / 2
         line((-style.width / 2, -style.distance), (style.width / 2, -style.distance), ..style)
         for i in (0, 1, 2) {
@@ -63,7 +64,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        line((0, 0), (0, -style.distance), ..style.at("wires"))
+        line((0, 0), (0, -style.distance), ..style.at("wire"))
         for i in (0, 1, 2) {
             line((-style.width / 2 + i * style.delta, -style.distance - i * style.spacing), (style.width / 2 - i * style.delta, -style.distance - i * style.spacing), ..style)
         }
@@ -84,7 +85,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        line((0, 0), (0, style.distance), ..style.at("wires"))
+        line((0, 0), (0, style.distance), ..style.at("wire"))
         line((rel: (radius: style.radius, angle: -90deg - style.angle), to: (0, style.distance)), (0, style.distance), (
             rel: (radius: style.radius, angle: -90deg + style.angle),
         ))
@@ -107,7 +108,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        line((0, 0), (0, -style.distance), ..style.at("wires"))
+        line((0, 0), (0, -style.distance), ..style.at("wire"))
         line((rel: (radius: style.radius, angle: 90deg + style.angle), to: (0, -style.distance)), (0, -style.distance), (
             rel: (radius: style.radius, angle: 90deg - style.angle),
         ))

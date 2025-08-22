@@ -1,11 +1,10 @@
-#import "../dependencies.typ": cetz
-#import cetz.draw: line
+#import "/src/dependencies.typ": cetz
+#import "/src/canvas.typ": get-style
+#import cetz.draw: get-ctx, line
 
-#let wire(multi: 1, ..params) = {
-    assert(type(multi) == int, message: "multi must be an int")
 
-    line(stroke: 0.5pt, ..params)
-    /*if multi > 10 {
-        line(, stroke: 0.6pt)
-    }*/
+#let wire(..params) = {
+    get-ctx(ctx => {
+        line(..get-style(ctx).wire, ..params)
+    })
 }

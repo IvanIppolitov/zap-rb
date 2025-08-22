@@ -1,4 +1,5 @@
-#import "/src/component.typ": component, interface
+#import "/src/component.typ": component
+#import "/src/interface.typ": interface
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, circle, floating, line, rect
 
@@ -17,7 +18,7 @@
         interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2), io: position.len() < 2)
 
         rect((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2), fill: white, ..style)
-        line((-style.width / 2, 0), (style.width / 2, 0), ..style.at("wires"))
+        line((-style.width / 2, 0), (style.width / 2, 0), ..style.at("wire"))
         if (asymmetric) {
             rect((-style.width / 2, -style.height / 2), (-style.width / 2 + float(style.asymmetry * style.width), style.height / 2), fill: black)
         }
