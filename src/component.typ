@@ -7,7 +7,6 @@
 
 #let component(
     draw: none,
-    get-interface: none,
     label: none,
     i: none,
     f: none,
@@ -62,13 +61,13 @@
         set-origin(p-origin)
         rotate(p-rotate)
 
-        if position.len() == 1 {
-            get-interface(style)
-            move-to("bounds.west")
-            anchor("in", (rel: (-zap-style.pin.length, 0)))
-            move-to("bounds.east")
-            anchor("out", (rel: (+zap-style.pin.length, 0)))
-        }
+        // get-interface(style)
+        // if position.len() == 1 {
+        //     move-to("bounds.west")
+        //     anchor("in", (rel: (-zap-style.pin.length, 0)))
+        //     move-to("bounds.east")
+        //     anchor("out", (rel: (+zap-style.pin.length, 0)))
+        // }
 
         // Component
         on-layer(1, {
@@ -81,7 +80,7 @@
                     scale(x: p-scale.at(0, default: 1.0) * style.scale.x,
                           y: p-scale.at(1, default: 1.0) * style.scale.y)
                 }
-                get-interface(style)
+                // get-interface(style)
                 draw(ctx, position, style)
                 copy-anchors("bounds")
             })
@@ -90,29 +89,42 @@
         copy-anchors("component")
 
         // Label
-        on-layer(0, {
+        on-layer(2, {
             if label != none {
                 if type(label) == dictionary and label.at("content", default: none) == none {
                   panic("Label dictionary needs at least content key")
                 }
                 let label-style = zap-style.label
-                let (label, distance, width, height, anchor) = {(
-                    label-style.content,
+                let (label, distance, width, height, anchor) = if type(label) == dictionary {(
+                    label.at("content", default: label-style.content),
+                    label.at("distance", default: label-style.distance),
+                    ..cetz.util.measure(ctx, label.at("content", default: label-style.content)),
+                    label.at("anchor", default: label-style.anchor)
+                )} else {(
+                    label,
                     label-style.distance,
-                    ..cetz.util.measure(ctx, label-style.content),
+                    ..cetz.util.measure(ctx, label),
                     label-style.anchor
                 )}
                 let reverse = "south" in anchor
-                let new-position = (0.5 * width * calc.abs(calc.sin(p-rotate)) + 0.5 * height * calc.abs(calc.cos(p-rotate)))
-                content("component." + anchor, anchor: get-label-anchor(p-rotate).at(if reverse { 1 } else { 0 }), label, padding: distance)
+                content("component." + anchor, anchor: get-label-anchor(p-rotate, zap-style.label.tolerance).at(if reverse { 1 } else { 0 }), label, padding: distance)
+                // move-to("component.north")
+                // cetz.draw.anchor("label", (rel: (0, -zap-style.label.distance)))
+                // move-to("component.center")
+                // cetz.draw.anchor("label", (rel: (0, -1)))
+                // cetz.draw.anchor("label", "component")
+                // circle("label", radius: distance, stroke: green + .1pt, name: "circ")
+                // let pos = "circ.0%"
+                // content(pos, label, anchor: "north")
+                // circle(pos, radius: .4pt, fill: blue, stroke: none)
             }
         })
 
         // Decorations
 
         // Pins
-        wire("in", "component.west")
-        wire("component.east", "out")
+        // wire("in", "component.west")
+        // wire("component.east", "out")
 
         if i != none { current(ctx, i) }
         if f != none { flow(ctx, f) }

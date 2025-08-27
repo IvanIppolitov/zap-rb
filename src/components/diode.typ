@@ -1,7 +1,8 @@
 #import "/src/component.typ": component
 #import "/src/interface.typ": interface
+#import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
-#import cetz.draw: anchor, circle, line, polygon, scope, translate
+#import cetz.draw: anchor, circle, line, polygon, scope, translate, move-to
 #import "/src/mini.typ": radiation-arrows
 #import "/src/components/wire.typ": wire
 
@@ -15,15 +16,20 @@
         tunnel-length: .1,
     )
 
-    let get-interface(style) = {
-        translate((-style.radius / 4, 0))
-        interface((-style.radius / 2, -style.radius), (style.radius, style.radius))
-        translate((+style.radius / 4, 0))
-    }
-
     // Drawing function
     let draw(ctx, position, style) = {
         translate((-style.radius / 4, 0))
+        interface((-style.radius / 2, -style.radius), (style.radius, style.radius))
+
+        if position.len() == 1 {
+            move-to("bounds.west")
+            anchor("in", (rel: (-ctx.zap.style.pin.length, 0)))
+            move-to("bounds.east")
+            anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
+        }
+        
+        wire("in", "bounds.west")
+        wire("bounds.east", "out")
 
         polygon((0, 0), 3, radius: style.radius, fill: white, ..style)
         wire((0deg, style.radius), (180deg, style.radius / 2))
@@ -61,7 +67,7 @@
     }
 
     // Component call
-    component("diode", name, node, draw: draw, get-interface: get-interface, style: style, ..params)
+    component("diode", name, node, draw: draw, style: style, ..params)
 }
 
 #let led(name, node, ..params) = diode(name, node, type: "emitting", ..params)

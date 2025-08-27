@@ -1,7 +1,8 @@
 #import "/src/component.typ": component
 #import "/src/interface.typ": interface
+#import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
-#import cetz.draw: anchor, arc, line, rect
+#import cetz.draw: anchor, arc, line, rect, move-to
 
 #let inductor(name, node, ..params) = {
     // Inductor style
@@ -13,7 +14,17 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2), io: position.len() < 2)
+        interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2))
+
+        if position.len() == 1 {
+            move-to("bounds.west")
+            anchor("in", (rel: (-ctx.zap.style.pin.length, 0)))
+            move-to("bounds.east")
+            anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
+        }
+        
+        wire("in", "bounds.west")
+        wire("bounds.east", "out")
 
         let bump-radius = style.width / style.bumps / 2
         if (style.variant == "iec") {

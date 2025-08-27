@@ -1,7 +1,8 @@
 #import "/src/component.typ": component
 #import "/src/interface.typ": interface
+#import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
-#import cetz.draw: anchor, line
+#import cetz.draw: anchor, line, move-to
 #import "/src/mini.typ": variable-arrow
 
 
@@ -14,12 +15,20 @@
         distance: .25
     )
 
-    let get-interface(style) = {
-        interface((-style.distance / 2, -style.width / 2), (style.distance / 2, style.width / 2))
-    }
-
     // Drawing function
     let draw(ctx, position, style) = {
+        interface((-style.distance / 2, -style.width / 2), (style.distance / 2, style.width / 2))
+        
+        if position.len() == 1 {
+            move-to("bounds.west")
+            anchor("in", (rel: (-ctx.zap.style.pin.length, 0)))
+            move-to("bounds.east")
+            anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
+        }
+        
+        wire("in", "bounds.west")
+        wire("bounds.east", "out")
+
         line((-style.distance / 2, -style.width / 2), (-style.distance / 2, style.width / 2), ..style)
         line((style.distance / 2, -style.width / 2), (style.distance / 2, style.width / 2), ..style)
         if (variable) {
@@ -28,5 +37,5 @@
     }
 
     // Componant call
-    component("capacitor", name, node, draw: draw, get-interface: get-interface, style: style, ..params)
+    component("capacitor", name, node, draw: draw, style: style, ..params)
 }

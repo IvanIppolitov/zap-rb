@@ -1,5 +1,6 @@
 #import "/src/component.typ": component
 #import "/src/interface.typ": interface
+#import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
 #import "/src/mini.typ": ac-sign
 #import cetz.draw: anchor, circle, content, line, mark, polygon, rect
@@ -18,7 +19,7 @@
     // Drawing function
     let draw(ctx, position, style) = {
         let factor = if dependent { 1.1 } else { 1 }
-        interface((-style.radius * factor, -style.radius * factor), (style.radius * factor, style.radius * factor), io: position.len() < 2)
+        interface((-style.radius * factor, -style.radius * factor), (style.radius * factor, style.radius * factor))
 
         if dependent {
             polygon((0, 0), 4, fill: white, ..style, radius: style.radius * factor)
@@ -54,7 +55,7 @@
     // Drawing function
     let draw(ctx, position, style) = {
         let factor = if dependent { 1.1 } else { 1 }
-        interface((-style.radius * factor, -style.radius * factor), (style.radius * factor, style.radius * factor), io: position.len() < 2)
+        interface((-style.radius * factor, -style.radius * factor), (style.radius * factor, style.radius * factor))
 
         if dependent {
             polygon((0, 0), 4, fill: white, ..style, radius: style.radius * factor)

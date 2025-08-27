@@ -14,7 +14,8 @@
             scale: auto,
             content: none,
             distance: 7pt,
-            anchor: "north"
+            anchor: "north",
+            tolerance: 15
         ),
         pin: (
             variant: auto,
@@ -22,7 +23,7 @@
             length: 24pt
         ),
         node: (
-            radius: .03,
+            radius: .04,
             stroke: auto,
             fill: auto,
             nofill: white
@@ -142,7 +143,9 @@
         resistor: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: (
+              thickness: 1.1pt
+            )
         ),
         rheostat: (
             variant: auto,
@@ -226,6 +229,6 @@
         ),
     ),
     params: (
-        debug: true
+        debug: false
     )
 )

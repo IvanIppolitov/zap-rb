@@ -1,5 +1,6 @@
 #import "/src/component.typ": component
 #import "/src/interface.typ": interface
+#import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, line, polygon
 
@@ -14,7 +15,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        line((0, 0), (0, -style.distance), ..style.at("wire"))
+        wire((0, 0), (0, -style.distance))
         polygon((0, -style.distance), 3, anchor: "north", radius: style.radius, angle: -90deg, name: "polygon", ..style)
 
         let (width, height) = cetz.util.measure(ctx, "polygon")
@@ -85,7 +86,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        line((0, 0), (0, style.distance), ..style.at("wire"))
+        wire((0, 0), (0, style.distance))
         line((rel: (radius: style.radius, angle: -90deg - style.angle), to: (0, style.distance)), (0, style.distance), (
             rel: (radius: style.radius, angle: -90deg + style.angle),
         ))
@@ -108,7 +109,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        line((0, 0), (0, -style.distance), ..style.at("wire"))
+        wire((0, 0), (0, -style.distance))
         line((rel: (radius: style.radius, angle: 90deg + style.angle), to: (0, -style.distance)), (0, -style.distance), (
             rel: (radius: style.radius, angle: 90deg - style.angle),
         ))

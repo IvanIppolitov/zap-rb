@@ -1,13 +1,10 @@
 #import "/src/component.typ": component
 #import "/src/interface.typ": interface
+#import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
-#import cetz.draw: anchor, line, rect
+#import cetz.draw: anchor, line, rect, move-to
 #import "/src/mini.typ": variable-arrow
 
-
-#let get-interface(style) = {
-    interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2))
-}
 
 #let resistor(name, node, variable: false, heatable: false, adjustable: false, ..params) = {
     assert(type(variable) == bool, message: "variable must be of type bool")
@@ -22,6 +19,18 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
+        interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2))
+
+        if position.len() == 1 {
+            move-to("bounds.west")
+            anchor("in", (rel: (-ctx.zap.style.pin.length, 0)))
+            move-to("bounds.east")
+            anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
+        }
+        
+        wire("in", "bounds.west")
+        wire("bounds.east", "out")
+
         if style.variant == "iec" {
             rect(
                 (-style.width / 2, -style.height / 2),
@@ -64,7 +73,7 @@
     }
 
     // Componant call
-    component("resistor", name, node, draw: draw, get-interface: get-interface, style: style, ..params)
+    component("resistor", name, node, draw: draw, style: style, ..params)
 }
 
 #let rheostat(name, node, ..params) = resistor(name, node, variable: true, ..params)

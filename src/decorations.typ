@@ -2,14 +2,8 @@
 #import cetz.draw: bezier-through, catmull, circle, content, hobby, line, mark
 
 #let resolve-directions(direction) = {
-    let vertical = "north"
-    let horizontal = "east"
-    if "south" in direction {
-        vertical = "south"
-    }
-    if "west" in direction {
-        horizontal = "west"
-    }
+    let vertical = if "south" in direction { "south" } else { "north" }
+    let horizontal = if "west" in direction { "west" } else { "east" }
     return (x: horizontal, y: vertical)
 }
 

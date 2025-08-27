@@ -1,7 +1,8 @@
 #import "/src/component.typ": component
 #import "/src/interface.typ": interface
+#import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
-#import cetz.draw: anchor, content, line, polygon, rect, scope, translate
+#import cetz.draw: anchor, content, line, polygon, rect, scope, translate, move-to
 
 #let opamp(name, node, invert: false, label: none, ..params) = {
     assert(params.pos().len() == 0, message: "opamp supports only one node")
@@ -19,7 +20,7 @@
 
     // Drawing function
     let draw(ctx, position, style) = {
-        interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2), io: true)
+        interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2))
 
         let sgn = if invert { -1 } else { 1 }
         anchor("minus", (-style.width / 2, sgn * style.sign-delta))

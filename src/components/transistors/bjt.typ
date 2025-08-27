@@ -1,4 +1,6 @@
 #import "/src/component.typ": component
+#import "/src/interface.typ": interface
+#import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, circle, hide, line, mark, translate
 #import "/src/mini.typ": center-mark
@@ -16,10 +18,13 @@
         aperture: 50deg,
     )
 
+    let get-interface(style) = {
+        interface((-style.radius, -style.radius), (style.radius, style.radius))
+    }
+
     // Drawing function
     let draw(ctx, position, style) = {
-        interface((-style.radius, -style.radius), (style.radius, style.radius))
-
+        get-interface(style)
         translate((-calc.cos(style.aperture) * style.radius, 0))
 
         let sgn = if polarisation == "npn" { 1 } else { -1 }
@@ -30,18 +35,18 @@
 
         if envelope {
             circle((0, 0), radius: style.radius, ..style, name: "circle")
-            line("base", (-style.radius, 0), ..style.at("wires"))
+            wire("base", (-style.radius, 0))
         } else {
             hide(circle((0, 0), radius: style.radius, ..style, name: "circle"))
         }
 
-        line((to: "base", rel: (0, -style.base-height / 2)), (to: "base", rel: (0, style.base-height / 2)), ..style)
-        line((to: "base", rel: (0, -style.base-distance * sgn)), "e", ..style.at("wires"), mark: center-mark(symbol: if sgn == -1 { "<" } else { ">" }))
-        line((to: "base", rel: (0, style.base-distance * sgn)), "c", ..style.at("wires"))
+        wire((to: "base", rel: (0, -style.base-height / 2)), (to: "base", rel: (0, style.base-height / 2)), ..style)
+        wire((to: "base", rel: (0, -style.base-distance * sgn)), "e", mark: center-mark(symbol: if sgn == -1 { "<" } else { ">" }))
+        line((to: "base", rel: (0, style.base-distance * sgn)), "c")
     }
 
     // Componant call
-    component("bjt", name, node, draw: draw, style: style, ..params, label: none)
+    component("bjt", name, node, draw: draw, get-interface: get-interface, style: style, ..params, label: none)
 }
 
 #let pnp(name, node, ..params) = bjt(name, node, polarisation: "pnp", ..params)
