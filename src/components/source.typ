@@ -3,7 +3,7 @@
 #import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
 #import "/src/mini.typ": ac-sign
-#import cetz.draw: anchor, circle, content, line, mark, polygon, rect
+#import cetz.draw: anchor, circle, content, line, mark, polygon, rect, move-to
 
 #let isource(name, node, dependent: false, current: "dc", ..params) = {
     assert(type(dependent) == bool, message: "dependent must be boolean")
@@ -20,6 +20,16 @@
     let draw(ctx, position, style) = {
         let factor = if dependent { 1.1 } else { 1 }
         interface((-style.radius * factor, -style.radius * factor), (style.radius * factor, style.radius * factor))
+
+        if position.len() == 1 {
+            move-to("bounds.west")
+            anchor("in", (rel: (-ctx.zap.style.pin.length, 0)))
+            move-to("bounds.east")
+            anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
+        }
+        
+        wire("in", "bounds.west")
+        wire("bounds.east", "out")
 
         if dependent {
             polygon((0, 0), 4, fill: white, ..style, radius: style.radius * factor)
@@ -56,6 +66,16 @@
     let draw(ctx, position, style) = {
         let factor = if dependent { 1.1 } else { 1 }
         interface((-style.radius * factor, -style.radius * factor), (style.radius * factor, style.radius * factor))
+
+        if position.len() == 1 {
+            move-to("bounds.west")
+            anchor("in", (rel: (-ctx.zap.style.pin.length, 0)))
+            move-to("bounds.east")
+            anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
+        }
+        
+        wire("in", "bounds.west")
+        wire("bounds.east", "out")
 
         if dependent {
             polygon((0, 0), 4, fill: white, ..style, radius: style.radius * factor)
