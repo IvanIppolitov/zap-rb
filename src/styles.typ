@@ -209,7 +209,8 @@
             width: 1.41,
             height: .47,
             zigs: 3,
-            shift: 0.22pt,
+            shift: 0,
+            extra: 0.1,
         ),
         rheostat: (
             variant: auto,
