@@ -7,13 +7,6 @@
 #let fuse(name, node, asymmetric: false, ..params) = {
     assert(type(asymmetric) == bool, message: "asymmetric must be of type bool")
 
-    // Fuses style
-    let style = (
-        width: .88,
-        height: .88 / 2.4,
-        asymmetry: 25%,
-    )
-
     // Drawing function
     let draw(ctx, position, style) = {
         interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2))
@@ -36,7 +29,7 @@
     }
 
     // Componant call
-    component("fuse", name, node, draw: draw, style: style, ..params)
+    component("fuse", name, node, draw: draw, ..params)
 }
 
 #let afuse(name, node, ..params) = fuse(name, node, asymmetric: true, ..params)

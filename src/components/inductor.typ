@@ -5,13 +5,6 @@
 #import cetz.draw: anchor, arc, line, rect, move-to
 
 #let inductor(name, node, ..params) = {
-    // Inductor style
-    let style = (
-        width: 1.41,
-        height: 1.41 / 3,
-        bumps: 3,
-        shift: 0.4pt
-    )
 
     // Drawing function
     let draw(ctx, position, style) = {
@@ -50,5 +43,5 @@
     }
 
     // Componant call
-    component("inductor", name, node, draw: draw, style: style, ..params)
+    component("inductor", name, node, draw: draw, ..params)
 }

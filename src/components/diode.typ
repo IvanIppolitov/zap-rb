@@ -9,13 +9,6 @@
 #let diode(name, node, type: none, ..params) = {
     assert((type in ("emitting", "receiving", "tunnel", "zener", "schottky") or type == none), message: "type must be tunnel, zener, schottky, ...")
 
-    // Diode style
-    let style = (
-        radius: .3,
-        line: .25,
-        tunnel-length: .1,
-    )
-
     // Drawing function
     let draw(ctx, position, style) = {
         translate((-style.radius / 4, 0))
@@ -67,7 +60,7 @@
     }
 
     // Component call
-    component("diode", name, node, draw: draw, style: style, ..params)
+    component("diode", name, node, draw: draw, ..params)
 }
 
 #let led(name, node, ..params) = diode(name, node, type: "emitting", ..params)

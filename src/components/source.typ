@@ -9,13 +9,6 @@
     assert(type(dependent) == bool, message: "dependent must be boolean")
     assert(current in ("dc", "ac"), message: "current must be ac or dc")
 
-    // Isource style
-    let style = (
-        radius: .53,
-        padding: .25,
-        arrow-scale: 3,
-    )
-
     // Drawing function
     let draw(ctx, position, style) = {
         let factor = if dependent { 1.1 } else { 1 }
@@ -44,7 +37,7 @@
     }
 
     // Componant call
-    component("isource", name, node, draw: draw, style: style, ..params)
+    component("isource", name, node, draw: draw, ..params)
 }
 
 #let disource(name, node, ..params) = isource(name, node, dependent: true, ..params)
@@ -52,15 +45,6 @@
 
 #let vsource(name, node, dependent: false, current: "dc", ..params) = {
     assert(current in ("dc", "ac"), message: "current must be ac or dc")
-
-    // Vsource style
-    let style = (
-        radius: .53,
-        padding: .25,
-        sign-stroke: .55pt,
-        sign-size: .14,
-        sign-delta: .07,
-    )
 
     // Drawing function
     let draw(ctx, position, style) = {
@@ -103,7 +87,7 @@
     }
 
     // Componant call
-    component("vsource", name, node, draw: draw, style: style, ..params)
+    component("vsource", name, node, draw: draw, ..params)
 }
 
 #let dvsource(name, node, ..params) = vsource(name, node, dependent: true, ..params)

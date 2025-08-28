@@ -16,7 +16,6 @@
     rotate: 0deg,
     scale: 1.0,
     debug: none,
-    style: none,
     ..params,
 ) = {
     let position-ratio = position
@@ -41,13 +40,12 @@
     let p-rotate = rotate
     let p-scale = scale
     let p-draw = draw
-    let p-style = style
 
     import cetz.draw: *
 
     group(name: name, ctx => {
         let zap-style = get-style(ctx)
-        let style = zap-style.at(uid) + p-style + params.named()
+        let style = zap-style.at(uid) + params.named()
         
         let p-rotate = p-rotate
         let (ctx, ..position) = cetz.coordinate.resolve(ctx, ..position)

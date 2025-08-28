@@ -5,11 +5,6 @@
 #import cetz.draw: anchor, circle, line, mark, rect, hide, move-to
 
 #let switch(name, node, closed: false, ..params) = {
-    // Switch style
-    let style = (
-        width: .8,
-        angle: 35deg
-    )
 
     // Drawing function
     let draw(ctx, position, style) = {
@@ -29,5 +24,5 @@
     }
 
     // Componant call
-    component("switch", name, node, draw: draw, style: style, ..params)
+    component("switch", name, node, draw: draw, ..params)
 }

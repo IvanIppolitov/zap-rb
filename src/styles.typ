@@ -48,12 +48,17 @@
         capacitor: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: .8,
+            distance: .25
         ),
         diode: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .3,
+            line: .25,
+            tunnel-length: .1,
         ),
         led: (
             variant: auto,
@@ -83,12 +88,20 @@
         opamp: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: 1.8,
+            height: 1.75,
+            padding: .28,
+            sign-stroke: .55pt,
+            sign-size: .14,
+            sign-delta: .45,
         ),
         switch: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: .8,
+            angle: 35deg
         ),
         afuse: (
             variant: auto,
@@ -98,37 +111,60 @@
         fuse: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: .88,
+            height: .88 / 2.4,
+            asymmetry: 25%,
         ),
         earth: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: .53,
+            delta: .09,
+            spacing: .11,
+            distance: .28,
         ),
         frame: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: 0.46,
+            angle: 20deg,
+            depth: 0.25,
+            distance: 0.28,
         ),
         ground: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: 0.22,
+            distance: 0.28,
         ),
         vcc: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            angle: 35deg,
+            radius: .4,
+            distance: .6,
         ),
         vee: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            angle: 35deg,
+            radius: .4,
+            distance: .6,
         ),
         inductor: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: 1.41,
+            height: 1.41 / 3,
+            bumps: 3,
+            shift: 0.4pt
         ),
         heater: (
             variant: auto,
@@ -143,7 +179,11 @@
         resistor: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: 1.41,
+            height: .47,
+            zigs: 3,
+            shift: 0.22pt //improves joints
         ),
         rheostat: (
             variant: auto,
@@ -168,32 +208,50 @@
         isource: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .53,
+            padding: .25,
+            arrow-scale: 3,
         ),
         vsource: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .53,
+            padding: .25,
+            sign-stroke: .55pt,
+            sign-size: .14,
+            sign-delta: .07,
         ),
         acmotor: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .49,
+            magnet-width: 1.23,
+            magnet-height: 1.23 / 4,
         ),
         dcmotor: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .49,
+            magnet-width: 1.23,
+            magnet-height: 1.23 / 4,
         ),
         bjt: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .65,
+            base-height: .6,
+            base-distance: .12,
+            aperture: 50deg,
         ),
         npn: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
         ),
         pnp: (
             variant: auto,
@@ -203,7 +261,13 @@
         mosfet: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            height: 0.795,
+            width: 1.065,
+            base-width: 1.35,
+            base-spacing: 0.165,
+            base-distance: 0.165,
+            radius: 1.05,
         ),
         nmos: (
             variant: auto,

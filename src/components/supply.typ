@@ -7,12 +7,6 @@
 #let ground(name, node, ..params) = {
     assert(params.pos().len() == 0, message: "ground supports only one node")
 
-    // Ground style
-    let style = (
-        radius: 0.22,
-        distance: 0.28,
-    )
-
     // Drawing function
     let draw(ctx, position, style) = {
         wire((0, 0), (0, -style.distance))
@@ -23,19 +17,11 @@
     }
 
     // Componant call
-    component("ground", name, node, draw: draw, style: style, ..params)
+    component("ground", name, node, draw: draw, ..params)
 }
 
 #let frame(name, node, ..params) = {
     assert(params.pos().len() == 0, message: "earth supports only one node")
-
-    // Earth style
-    let style = (
-        width: 0.46,
-        angle: 20deg,
-        depth: 0.25,
-        distance: 0.28,
-    )
 
     // Drawing function
     let draw(ctx, position, style) = {
@@ -49,19 +35,11 @@
     }
 
     // Componant call
-    component("frame", name, node, draw: draw, style: style, ..params)
+    component("frame", name, node, draw: draw, ..params)
 }
 
 #let earth(name, node, ..params) = {
     assert(params.pos().len() == 0, message: "earth supports only one node")
-
-    // Earth style
-    let style = (
-        width: .53,
-        delta: .09,
-        spacing: .11,
-        distance: .28,
-    )
 
     // Drawing function
     let draw(ctx, position, style) = {
@@ -73,17 +51,10 @@
     }
 
     // Componant call
-    component("earth", name, node, draw: draw, style: style, ..params)
+    component("earth", name, node, draw: draw, ..params)
 }
 
 #let vcc(name, node, ..params) = {
-    // VCC style
-    let style = (
-        angle: 35deg,
-        radius: .4,
-        distance: .6,
-    )
-
     // Drawing function
     let draw(ctx, position, style) = {
         wire((0, 0), (0, style.distance))
@@ -96,16 +67,10 @@
     }
 
     // Componant call
-    component("vcc", name, node, draw: draw, style: style, ..params)
+    component("vcc", name, node, draw: draw, ..params)
 }
 
 #let vee(name, node, label: none, ..params) = {
-    // VEE style
-    let style = (
-        angle: 35deg,
-        radius: .4,
-        distance: .6,
-    )
 
     // Drawing function
     let draw(ctx, position, style) = {
@@ -129,5 +94,5 @@
     }
 
     // Componant call
-    component("vee", name, node, draw: draw, style: style, label: p-label, ..params)
-}
+        component("vee", name, node, draw: draw, label: p-label, ..params)
+    }

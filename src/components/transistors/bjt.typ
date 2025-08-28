@@ -10,21 +10,9 @@
     assert(type(envelope) == bool, message: "envelope must be of type bool")
     assert(params.pos().len() == 0, message: "ground supports only one node")
 
-    // BJT style
-    let style = (
-        radius: .65,
-        base-height: .6,
-        base-distance: .12,
-        aperture: 50deg,
-    )
-
-    let get-interface(style) = {
-        interface((-style.radius, -style.radius), (style.radius, style.radius))
-    }
-
     // Drawing function
     let draw(ctx, position, style) = {
-        get-interface(style)
+        interface((-style.radius, -style.radius), (style.radius, style.radius))
         translate((-calc.cos(style.aperture) * style.radius, 0))
 
         let sgn = if polarisation == "npn" { 1 } else { -1 }
@@ -46,7 +34,7 @@
     }
 
     // Componant call
-    component("bjt", name, node, draw: draw, get-interface: get-interface, style: style, ..params, label: none)
+    component("bjt", name, node, draw: draw, get-interface: get-interface, ..params, label: none)
 }
 
 #let pnp(name, node, ..params) = bjt(name, node, polarisation: "pnp", ..params)

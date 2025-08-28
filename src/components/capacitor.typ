@@ -9,12 +9,6 @@
 #let capacitor(name, node, variable: false, ..params) = {
     assert(type(variable) == bool, message: "variable must be of type bool")
 
-    // Capacitor style
-    let style = (
-        width: .8,
-        distance: .25
-    )
-
     // Drawing function
     let draw(ctx, position, style) = {
         interface((-style.distance / 2, -style.width / 2), (style.distance / 2, style.width / 2))
@@ -37,5 +31,5 @@
     }
 
     // Componant call
-    component("capacitor", name, node, draw: draw, style: style, ..params)
+    component("capacitor", name, node, draw: draw, ..params)
 }
