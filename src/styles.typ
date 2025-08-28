@@ -143,9 +143,7 @@
         resistor: (
             variant: auto,
             scale: auto,
-            stroke: (
-              thickness: 1.1pt
-            )
+            stroke: auto
         ),
         rheostat: (
             variant: auto,

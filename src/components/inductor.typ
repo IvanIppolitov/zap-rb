@@ -10,6 +10,7 @@
         width: 1.41,
         height: 1.41 / 3,
         bumps: 3,
+        shift: 0.4pt
     )
 
     // Drawing function
@@ -23,8 +24,14 @@
             anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
         }
         
-        wire("in", "bounds.west")
-        wire("bounds.east", "out")
+        wire("in", "bounds.west", style: (stroke: (cap: "square")))
+        wire("bounds.east", "out", style: (stroke: (cap: "square")))
+
+        // move-to("bounds.west")
+        // wire((rel: (+style.shift,0)), "in")
+        // move-to("bounds.east")
+        // wire((rel: (-style.shift,0)), "out")
+        //
 
         let bump-radius = style.width / style.bumps / 2
         if (style.variant == "iec") {

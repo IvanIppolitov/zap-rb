@@ -15,7 +15,7 @@
         width: 1.41,
         height: .47,
         zigs: 3,
-        shift: 0.45pt //improves joints
+        shift: 0.22pt //improves joints
     )
 
     // Drawing function
