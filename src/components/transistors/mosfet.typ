@@ -2,7 +2,8 @@
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, circle, content, floating, hide, line, mark, scale, set-origin, translate
 
-#let mosfet(
+#let mosfet-base(
+    uid,
     name,
     node,
     channel: "n",
@@ -75,10 +76,11 @@
     }
 
     // Componant call
-    component("mosfet", name, node, draw: draw, ..params)
+    component(uid, name, node, draw: draw, ..params)
 }
 
-#let pmos(name, node, ..params) = mosfet(name, node, channel: "p", ..params)
-#let nmos(name, node, ..params) = mosfet(name, node, channel: "n", ..params)
-#let pmosd(name, node, ..params) = mosfet(name, node, channel: "p", mode: "depletion", ..params)
+#let mosfet(name, node, ..params) = mosfet-base("mosfet", name, node, ..params)
+#let pmos(name, node, ..params) = mosfet-base("pmos", name, node, channel: "p", ..params)
+#let nmos(name, node, ..params) = mosfet-base("nmos", name, node, channel: "n", ..params)
+#let pmosd(name, node, ..params) = mosfet-base("pmosd", name, node, channel: "p", mode: "depletion", ..params)
 #let nmosd(name, node, ..params) = mosfet(name, node, channel: "n", mode: "depletion", ..params)

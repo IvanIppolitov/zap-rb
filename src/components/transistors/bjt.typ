@@ -5,7 +5,7 @@
 #import cetz.draw: anchor, circle, hide, line, mark, translate
 #import "/src/mini.typ": center-mark
 
-#let bjt(name, node, polarisation: "npn", envelope: false, ..params) = {
+#let bjt-base(uid, name, node, polarisation: "npn", envelope: false, ..params) = {
     assert(polarisation in ("npn", "pnp"), message: "polarisation must `npn` or `pnp`")
     assert(type(envelope) == bool, message: "envelope must be of type bool")
     assert(params.pos().len() == 0, message: "ground supports only one node")
@@ -29,13 +29,14 @@
         }
 
         wire((to: "base", rel: (0, -style.base-height / 2)), (to: "base", rel: (0, style.base-height / 2)), ..style)
-        wire((to: "base", rel: (0, -style.base-distance * sgn)), "e", mark: center-mark(symbol: if sgn == -1 { "<" } else { ">" }))
-        line((to: "base", rel: (0, style.base-distance * sgn)), "c")
+        wire((to: "base", rel: (0, -style.base-distance * sgn)), "e", mark: center-mark(symbol: if sgn == -1 { "<" } else { ">" }), ..style)
+        wire((to: "base", rel: (0, style.base-distance * sgn)), "c", ..style)
     }
 
     // Componant call
-    component("bjt", name, node, draw: draw, ..params, label: none)
+    component(uid, name, node, draw: draw, ..params, label: none)
 }
 
-#let pnp(name, node, ..params) = bjt(name, node, polarisation: "pnp", ..params)
-#let npn(name, node, ..params) = bjt(name, node, polarisation: "npn", ..params)
+#let bjt(name, node, ..params) = bjt-base("bjt", name, node, ..params)
+#let npn(name, node, ..params) = bjt-base("npn", name, node, polarisation: "npn", ..params)
+#let pnp(name, node, ..params) = bjt-base("pnp", name, node, polarisation: "pnp", ..params)

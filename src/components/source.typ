@@ -5,7 +5,7 @@
 #import "/src/mini.typ": ac-sign
 #import cetz.draw: anchor, circle, content, line, mark, polygon, rect, move-to
 
-#let isource(name, node, dependent: false, current: "dc", ..params) = {
+#let isource-base(uid, name, node, dependent: false, current: "dc", ..params) = {
     assert(type(dependent) == bool, message: "dependent must be boolean")
     assert(current in ("dc", "ac"), message: "current must be ac or dc")
 
@@ -37,13 +37,14 @@
     }
 
     // Componant call
-    component("isource", name, node, draw: draw, ..params)
+    component(uid, name, node, draw: draw, ..params)
 }
 
-#let disource(name, node, ..params) = isource(name, node, dependent: true, ..params)
-#let acisource(name, node, ..params) = isource(name, node, current: "ac", ..params)
+#let isource(name, node, ..params) = isource-base("isource", name, node, dependent: true, ..params)
+#let disource(name, node, ..params) = isource-base("disource", name, node, dependent: true, ..params)
+#let acisource(name, node, ..params) = isource-base("acisource", name, node, current: "ac", ..params)
 
-#let vsource(name, node, dependent: false, current: "dc", ..params) = {
+#let vsource-base(uid, name, node, dependent: false, current: "dc", ..params) = {
     assert(current in ("dc", "ac"), message: "current must be ac or dc")
 
     // Drawing function
@@ -87,8 +88,9 @@
     }
 
     // Componant call
-    component("vsource", name, node, draw: draw, ..params)
+    component(uid, name, node, draw: draw, ..params)
 }
 
-#let dvsource(name, node, ..params) = vsource(name, node, dependent: true, ..params)
-#let acvsource(name, node, ..params) = vsource(name, node, current: "ac", ..params)
+#let vsource(name, node, ..params) = vsource-base("vsource", name, node, ..params)
+#let dvsource(name, node, ..params) = vsource-base("dvsource", name, node, dependent: true, ..params)
+#let acvsource(name, node, ..params) = vsource-base("acvsource", name, node, current: "ac", ..params)

@@ -6,7 +6,7 @@
 #import "/src/mini.typ": variable-arrow
 
 
-#let resistor(name, node, variable: false, heatable: false, adjustable: false, ..params) = {
+#let resistor-base(uid, name, node, variable: false, heatable: false, adjustable: false, ..params) = {
     assert(type(variable) == bool, message: "variable must be of type bool")
     assert(type(adjustable) == bool, message: "adjustable must be of type bool")
 
@@ -83,9 +83,10 @@
     }
 
     // Componant call
-    component("resistor", name, node, draw: draw, ..params)
+    component(uid, name, node, draw: draw, ..params)
 }
 
-#let rheostat(name, node, ..params) = resistor(name, node, variable: true, ..params)
-#let potentiometer(name, node, ..params) = resistor(name, node, adjustable: true, ..params)
-#let heater(name, node, ..params) = resistor(name, node, heatable: true, ..params)
+#let resistor(name, node, ..params) = resistor-base("resistor", name, node, ..params)
+#let rheostat(name, node, ..params) = resistor-base("rheostat", name, node, variable: true, ..params)
+#let potentiometer(name, node, ..params) = resistor-base("potentiometer", name, node, adjustable: true, ..params)
+#let heater(name, node, ..params) = resistor-base("heater", name, node, heatable: true, ..params)

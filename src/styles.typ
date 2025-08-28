@@ -1,5 +1,5 @@
 // All components
-// wire, node, capacitor, diode, led, photodiode, schottky, tunnel, zener, opamp, switch, afuse, fuse, earth, frame, ground, vcc, vee, inductor, heater, potentiometer, resistor, rheostat, acvsource, disource, dvsource, isource, vsource, acmotor, dcmotor, bjt, npn, pnp, mosfet, nmos, nmosd, pmos, pmosd
+// wire, node, capacitor, diode, led, photodiode, schottky, tunnel, zener, opamp, switch, afuse, fuse, earth, frame, ground, vcc, vee, inductor, heater, potentiometer, resistor, rheostat, vsource, dvsource, acvsource, isource, disource, acisource, acmotor, dcmotor, bjt, npn, pnp, mosfet, nmos, nmosd, pmos, pmosd
 
 #let default = (
     style: (
@@ -41,7 +41,7 @@
             angle: -30deg,
             shift: 3pt,
             font: 3pt,
-            fill: red
+            fill: red,
         ),
 
         // Components
@@ -50,7 +50,7 @@
             scale: auto,
             stroke: auto,
             width: .8,
-            distance: .25
+            distance: .25,
         ),
         diode: (
             variant: auto,
@@ -63,27 +63,42 @@
         led: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .3,
+            line: .25,
+            tunnel-length: .1,
         ),
         photodiode: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .3,
+            line: .25,
+            tunnel-length: .1,
         ),
         schottky: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .3,
+            line: .25,
+            tunnel-length: .1,
         ),
         tunnel: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .3,
+            line: .25,
+            tunnel-length: .1,
         ),
         zener: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .3,
+            line: .25,
+            tunnel-length: .1,
         ),
         opamp: (
             variant: auto,
@@ -101,12 +116,15 @@
             scale: auto,
             stroke: auto,
             width: .8,
-            angle: 35deg
+            angle: 35deg,
         ),
         afuse: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: .88,
+            height: .88 / 2.4,
+            asymmetry: 25%,
         ),
         fuse: (
             variant: auto,
@@ -164,17 +182,25 @@
             width: 1.41,
             height: 1.41 / 3,
             bumps: 3,
-            shift: 0.4pt
+            shift: 0.4pt,
         ),
         heater: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: 1.41,
+            height: .47,
+            zigs: 3,
+            shift: 0.22pt,
         ),
         potentiometer: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            width: 1.41,
+            height: .47,
+            zigs: 3,
+            shift: 0.22pt,
         ),
         resistor: (
             variant: auto,
@@ -183,35 +209,16 @@
             width: 1.41,
             height: .47,
             zigs: 3,
-            shift: 0.22pt //improves joints
+            shift: 0.22pt,
         ),
         rheostat: (
             variant: auto,
             scale: auto,
-            stroke: auto
-        ),
-        acvsource: (
-            variant: auto,
-            scale: auto,
-            stroke: auto
-        ),
-        disource: (
-            variant: auto,
-            scale: auto,
-            stroke: auto
-        ),
-        dvsource: (
-            variant: auto,
-            scale: auto,
-            stroke: auto
-        ),
-        isource: (
-            variant: auto,
-            scale: auto,
             stroke: auto,
-            radius: .53,
-            padding: .25,
-            arrow-scale: 3,
+            width: 1.41,
+            height: .47,
+            zigs: 3,
+            shift: 0.22pt,
         ),
         vsource: (
             variant: auto,
@@ -222,6 +229,50 @@
             sign-stroke: .55pt,
             sign-size: .14,
             sign-delta: .07,
+        ),
+        dvsource: (
+            variant: auto,
+            scale: auto,
+            stroke: auto,
+            radius: .53,
+            padding: .25,
+            sign-stroke: .55pt,
+            sign-size: .14,
+            sign-delta: .07,
+        ),
+        acvsource: (
+            variant: auto,
+            scale: auto,
+            stroke: auto,
+            radius: .53,
+            padding: .25,
+            sign-stroke: .55pt,
+            sign-size: .14,
+            sign-delta: .07,
+        ),
+        isource: (
+            variant: auto,
+            scale: auto,
+            stroke: auto,
+            radius: .53,
+            padding: .25,
+            arrow-scale: 3,
+        ),
+        disource: (
+            variant: auto,
+            scale: auto,
+            stroke: auto,
+            radius: .53,
+            padding: .25,
+            arrow-scale: 3,
+        ),
+        acisource: (
+            variant: auto,
+            scale: auto,
+            stroke: auto,
+            radius: .53,
+            padding: .25,
+            arrow-scale: 3,
         ),
         acmotor: (
             variant: auto,
@@ -252,11 +303,19 @@
             variant: auto,
             scale: auto,
             stroke: auto,
+            radius: .65,
+            base-height: .6,
+            base-distance: .12,
+            aperture: 50deg,
         ),
         pnp: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            radius: .65,
+            base-height: .6,
+            base-distance: .12,
+            aperture: 50deg,
         ),
         mosfet: (
             variant: auto,
@@ -272,22 +331,46 @@
         nmos: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            height: 0.795,
+            width: 1.065,
+            base-width: 1.35,
+            base-spacing: 0.165,
+            base-distance: 0.165,
+            radius: 1.05,
         ),
         nmosd: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            height: 0.795,
+            width: 1.065,
+            base-width: 1.35,
+            base-spacing: 0.165,
+            base-distance: 0.165,
+            radius: 1.05,
         ),
         pmos: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            height: 0.795,
+            width: 1.065,
+            base-width: 1.35,
+            base-spacing: 0.165,
+            base-distance: 0.165,
+            radius: 1.05,
         ),
         pmosd: (
             variant: auto,
             scale: auto,
-            stroke: auto
+            stroke: auto,
+            height: 0.795,
+            width: 1.065,
+            base-width: 1.35,
+            base-spacing: 0.165,
+            base-distance: 0.165,
+            radius: 1.05,
         ),
     ),
     params: (

@@ -4,7 +4,7 @@
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, circle, floating, line, rect, move-to
 
-#let fuse(name, node, asymmetric: false, ..params) = {
+#let fuse-base(uid, name, node, asymmetric: false, ..params) = {
     assert(type(asymmetric) == bool, message: "asymmetric must be of type bool")
 
     // Drawing function
@@ -29,7 +29,8 @@
     }
 
     // Componant call
-    component("fuse", name, node, draw: draw, ..params)
+    component(uid, name, node, draw: draw, ..params)
 }
 
-#let afuse(name, node, ..params) = fuse(name, node, asymmetric: true, ..params)
+#let fuse(name, node, ..params) = fuse-base("fuse", name, node, ..params)
+#let afuse(name, node, ..params) = fuse-base("afuse", name, node, asymmetric: true, ..params)

@@ -6,7 +6,7 @@
 #import "/src/mini.typ": radiation-arrows
 #import "/src/components/wire.typ": wire
 
-#let diode(name, node, type: none, ..params) = {
+#let diode-base(uid, name, node, type: none, ..params) = {
     assert((type in ("emitting", "receiving", "tunnel", "zener", "schottky") or type == none), message: "type must be tunnel, zener, schottky, ...")
 
     // Drawing function
@@ -60,11 +60,12 @@
     }
 
     // Component call
-    component("diode", name, node, draw: draw, ..params)
+    component(uid, name, node, draw: draw, ..params)
 }
 
-#let led(name, node, ..params) = diode(name, node, type: "emitting", ..params)
-#let photodiode(name, node, ..params) = diode(name, node, type: "receiving", ..params)
-#let tunnel(name, node, ..params) = diode(name, node, type: "tunnel", ..params)
-#let zener(name, node, ..params) = diode(name, node, type: "zener", ..params)
-#let schottky(name, node, ..params) = diode(name, node, type: "schottky", ..params)
+#let diode(name, node, ..params) = diode-base("diode", name, node, ..params)
+#let led(name, node, ..params) = diode-base("led", name, node, type: "emitting", ..params)
+#let photodiode(name, node, ..params) = diode-base("photodiode", name, node, type: "receiving", ..params)
+#let tunnel(name, node, ..params) = diode-base("tunnel", name, node, type: "tunnel", ..params)
+#let zener(name, node, ..params) = diode-base("zener", name, node, type: "zener", ..params)
+#let schottky(name, node, ..params) = diode-base("schottky", name, node, type: "schottky", ..params)
