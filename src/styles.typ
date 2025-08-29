@@ -31,7 +31,7 @@
         wire: (
             variant: auto,
             stroke: auto,
-            lbind: false
+            lbind: true
         ),
         debug: (
             radius: .7pt,
@@ -301,6 +301,7 @@
             base-height: .6,
             base-distance: .12,
             aperture: 50deg,
+            extra: 0.1,
         ),
         npn: (
             variant: auto,
@@ -310,6 +311,7 @@
             base-height: .6,
             base-distance: .12,
             aperture: 50deg,
+            extra: 0.1,
         ),
         pnp: (
             variant: auto,
@@ -319,6 +321,7 @@
             base-height: .6,
             base-distance: .12,
             aperture: 50deg,
+            extra: 0.1,
         ),
         mosfet: (
             variant: auto,
