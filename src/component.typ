@@ -2,7 +2,7 @@
 #import "decorations.typ": current, flow, voltage
 #import "components/node.typ": node
 #import "components/wire.typ": wire
-#import "canvas.typ": get-style
+#import "utils.typ": get-style
 #import "utils.typ": get-label-anchor
 
 #let component(

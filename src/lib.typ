@@ -1,7 +1,8 @@
 // Import dependencies
 #import "dependencies.typ": cetz
 #import cetz.draw as draw
-#import "/src/canvas.typ": canvas, set-style, get-style, set-params
+#import "/src/canvas.typ": canvas
+#import "/src/utils.typ": set-style, get-style, set-params
 
 // Import components
 #import "component.typ": component
