@@ -59,14 +59,6 @@
         set-origin(p-origin)
         rotate(p-rotate)
 
-        // get-interface(style)
-        // if position.len() == 1 {
-        //     move-to("bounds.west")
-        //     anchor("in", (rel: (-zap-style.pin.length, 0)))
-        //     move-to("bounds.east")
-        //     anchor("out", (rel: (+zap-style.pin.length, 0)))
-        // }
-
         // Component
         on-layer(1, {
             group(name: "component", {
@@ -78,7 +70,6 @@
                     scale(x: p-scale.at(0, default: 1.0) * style.scale.x,
                           y: p-scale.at(1, default: 1.0) * style.scale.y)
                 }
-                // get-interface(style)
                 draw(ctx, position, style)
                 copy-anchors("bounds")
             })

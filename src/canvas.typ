@@ -6,14 +6,14 @@
     cetz.canvas({
         cetz.draw.set-ctx(ctx => {
             ctx.insert("zap", (default))
-            ctx.zap.insert("wires", ())
+            ctx.shared-state.insert("zap", (wires: ()))
             return ctx
         })
         fallback 
         cetz.draw.get-ctx(ctx => {
-            let wires = ctx.zap.wires
+            let wires = ctx.shared-state.zap.wires
             for branch in wires {
-                wire(..branch)
+                wire(..branch, lbind: false)
             }
         })
     })

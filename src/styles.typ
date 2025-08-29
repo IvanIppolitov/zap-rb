@@ -7,7 +7,7 @@
         scale: (x: 1.0, y: 1.0),
         stroke: (
             thickness: .6pt,
-            paint: black
+            paint: black,
         ),
         label: (
             variant: auto,
@@ -15,22 +15,23 @@
             content: none,
             distance: 7pt,
             anchor: "north",
-            tolerance: 15
+            tolerance: 15,
         ),
         pin: (
             variant: auto,
             stroke: auto,
-            length: 24pt
+            length: 24pt,
         ),
         node: (
             radius: .04,
             stroke: auto,
             fill: auto,
-            nofill: white
+            nofill: white,
         ),
         wire: (
             variant: auto,
-            stroke: auto
+            stroke: auto,
+            lbind: false
         ),
         debug: (
             radius: .7pt,
