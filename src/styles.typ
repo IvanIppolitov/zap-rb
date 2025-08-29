@@ -184,6 +184,7 @@
             height: 1.41 / 3,
             bumps: 3,
             shift: 0.4pt,
+            extra: 0.1,
         ),
         heater: (
             variant: auto,

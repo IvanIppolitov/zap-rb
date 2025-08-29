@@ -17,26 +17,29 @@
             anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
         }
         
-        wire("in", "bounds.west", style: (stroke: (cap: "square")))
-        wire("bounds.east", "out", style: (stroke: (cap: "square")))
+        // wire("in", "bounds.west", style: (stroke: (cap: "square")))
+        // wire("bounds.east", "out", style: (stroke: (cap: "square")))
 
+        wire("in", "bounds.west")
+        wire("bounds.east", "out")
+        
         // move-to("bounds.west")
         // wire((rel: (+style.shift,0)), "in")
         // move-to("bounds.east")
         // wire((rel: (-style.shift,0)), "out")
         //
 
-        let bump-radius = style.width / style.bumps / 2
         if (style.variant == "iec") {
             rect((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2), fill: black, ..style)
         } else {
+            let width = style.width - style.extra * 2
+            let bump-radius = width / style.bumps / 2
             let sgn = if position.last().at(0) < position.first().at(0) { -1 } else { 1 }
-            let start = (-style.width / 2 - bump-radius, 0)
+            let start = (-width / 2 - bump-radius, 0)
+            line((-width / 2, 0), (rel: (-style.extra, 0)), ..cetz.util.merge-dictionary(style, (stroke: (cap: "square"))))
+            line((+width / 2, 0), (rel: (+style.extra, 0)), ..cetz.util.merge-dictionary(style, (stroke: (cap: "square"))))
             for i in range(style.bumps) {
-                let arc-center-x = (
-                    start.at(0) + bump-radius + i * 2 * bump-radius
-                )
-                let arc-center = (arc-center-x, 0)
+                let arc-center = (start.at(0) + bump-radius + i * 2 * bump-radius, 0)
                 arc(arc-center, radius: bump-radius, start: sgn * 180deg, stop: 0deg, ..style)
             }
         }
