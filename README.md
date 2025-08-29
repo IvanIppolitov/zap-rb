@@ -7,6 +7,11 @@
 
 **Zap** is a lightweight 🪶 Typst package that makes drawing electronic circuits simple and intuitive. It's the first Typst library designed to align with widely recognized standards like **IEC** and **IEEE/ANSI** 📜.
 
+### Fork's features:
+- Late binding wires (wires are drawn as late as possible => the joints between components are perfect)
+- `set-style()` works (customize each component)
+- `set-params()` for configuring (at the moment only `debug` is available)
+
 [Documentation](https://zap.grangelouis.ch) — [Examples](https://zap.grangelouis.ch/examples) — [Forum](https://github.com/l0uisgrange/zap/discussions/categories/q-a)
 
 ## Simple examples
