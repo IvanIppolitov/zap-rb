@@ -17,20 +17,31 @@
 
         let sgn = if polarisation == "npn" { 1 } else { -1 }
         anchor("base", ((-style.radius, 0), 30%, (style.radius, 0)))
-        anchor("e", (to: (-style.aperture * sgn, style.radius), rel: (0, -style.extra)))
+        anchor("e", (-style.aperture * sgn, style.radius))
         anchor("c", (style.aperture * sgn, style.radius))
-        anchor("b", if envelope { (-style.radius, 0) } else { "base" })
+        anchor("b", (-style.radius, 0))
 
         if envelope {
             circle((0, 0), radius: style.radius, ..style, name: "circle")
-            wire("base", (-style.radius, 0))
         } else {
             hide(circle((0, 0), radius: style.radius, ..style, name: "circle"))
         }
 
-        wire((to: "base", rel: (0, -style.base-height / 2)), (to: "base", rel: (0, style.base-height / 2)), ..style)
-        line((to: "base", rel: (0, -style.base-distance * sgn)), (to: "e", rel: (0, +style.extra)), "e", mark: center-mark(symbol: if sgn == -1 { "<" } else { ">" }), ..style)
-        wire((to: "base", rel: (0, style.base-distance * sgn)), "c", ..style)
+        line((to: "base", rel: (0, -style.base-height / 2)), (to: "base", rel: (0, style.base-height / 2)), ..style)
+
+        let base = (to: "base", rel: (0, -style.base-distance * sgn))
+        let sep = (base, 99%, "e")
+        line(base, sep, mark: center-mark(symbol: if sgn == -1 { "<" } else { ">" }), ..style)
+        wire(sep, "e")
+        
+        base = (to: "base", rel: (0, style.base-distance * sgn))
+        sep = (base, 99%, "c")
+        line(base, sep, ..style)
+        wire(sep, "c")
+
+        sep = ("base", 99%, (-style.radius, 0))
+        line("base", sep, ..style)
+        wire(sep, (-style.radius, 0))
     }
 
     // Componant call

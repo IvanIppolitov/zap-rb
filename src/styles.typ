@@ -184,7 +184,7 @@
             height: 1.41 / 3,
             bumps: 3,
             shift: 0.4pt,
-            extra: 0.1,
+            extra: 0.01,
         ),
         heater: (
             variant: auto,
@@ -212,7 +212,7 @@
             height: .47,
             zigs: 3,
             shift: 0,
-            extra: 0.1,
+            extra: 0.01,
         ),
         rheostat: (
             variant: auto,
@@ -301,7 +301,6 @@
             base-height: .6,
             base-distance: .12,
             aperture: 50deg,
-            extra: 0.1,
         ),
         npn: (
             variant: auto,
@@ -311,7 +310,6 @@
             base-height: .6,
             base-distance: .12,
             aperture: 50deg,
-            extra: 0.1,
         ),
         pnp: (
             variant: auto,
@@ -321,7 +319,6 @@
             base-height: .6,
             base-distance: .12,
             aperture: 50deg,
-            extra: 0.1,
         ),
         mosfet: (
             variant: auto,
