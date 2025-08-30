@@ -2,9 +2,10 @@
 #import "/src/interface.typ": interface
 #import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
+#import "/src/mini.typ": variable-arrow
 #import cetz.draw: anchor, arc, line, rect, bezier, move-to
 
-#let inductor(name, node, ..params) = {
+#let inductor(name, node, variable: false, ..params) = {
 
     // Drawing function
     let draw(ctx, position, style) = {
@@ -14,11 +15,10 @@
         } else if (style.variant == "iee") {
             interface((-style.width / 2, -style.height / 2 + style.fall / 2), (style.width / 2, style.height / 2 - style.fall / 2))
             cetz.draw.translate(x: 0., y: -style.fall)
+            
             let bump-radius = style.width / style.bumps / 2
             let sgn = if position.last().at(0) < position.first().at(0) { -1 } else { 1 }
             let start = (-style.width / 2 - bump-radius, 0)
-            // line((-width / 2, 0), (rel: (-style.extra, 0)), ..cetz.util.merge-dictionary(style, (stroke: (cap: "square"))))
-            // line((+width / 2, 0), (rel: (+style.extra, 0)), ..cetz.util.merge-dictionary(style, (stroke: (cap: "square"))))
             cetz.draw.merge-path(..style, {
                 for i in range(style.bumps) {
                     let arc-center = (start.at(0) + bump-radius + i * 2 * bump-radius, 0)
@@ -27,14 +27,17 @@
             })
         } else {
             interface((-style.width / 2, -style.height / 2 + style.fall / 2), (style.width / 2, style.height / 2 - style.fall / 2))
+            if position.last().at(0) < position.first().at(0) {
+                cetz.draw.rotate(180deg)
+            }
             cetz.draw.translate(x: 0., y: -style.fall)
+            
             let ratio = 0.6
             let loop-bottom = style.height * 0.25
             let loop-width = style.width / (ratio * (style.bumps - 1) + 1)
             let step = loop-width * ratio
-            let k1 = (0.24, 0.24)
+            let k1 = (0.30, 0.24)
             let k2 = (0.25, 0.55)
-            let sgn = if position.last().at(0) < position.first().at(0) { -1 } else { 1 }
             let start = -style.width / 2
 
             let top-draw(begin) = {
@@ -55,7 +58,12 @@
                 }
                 top-draw(start + step * (style.bumps - 1))
             })
+            
+            if variable {
+                variable-arrow(ratio: (0.55, 0.33))
+            }
         }
+        
         
         if position.len() == 1 {
             move-to("bounds.west")

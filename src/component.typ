@@ -46,6 +46,9 @@
     group(name: name, ctx => {
         let zap-style = get-style(ctx)
         let style = zap-style.at(uid) + params.named()
+        if style.at(style.variant, default: none) != none {
+            style = cetz.util.merge-dictionary(style, style.at(style.variant)) + params.named()
+        }
         
         let p-rotate = p-rotate
         let (ctx, ..position) = cetz.coordinate.resolve(ctx, ..position)

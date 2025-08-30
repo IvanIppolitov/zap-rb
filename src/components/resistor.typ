@@ -14,25 +14,11 @@
     let draw(ctx, position, style) = {
         interface((-style.width / 2, -style.height / 2), (style.width / 2, style.height / 2))
 
-        if position.len() == 1 {
-            move-to("bounds.west")
-            anchor("in", (rel: (-ctx.zap.style.pin.length, 0)))
-            move-to("bounds.east")
-            anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
-        }
-        
-        move-to("bounds.west")
-        wire((rel: (+style.shift,0)), "in")
-        move-to("bounds.east")
-        wire((rel: (-style.shift,0)), "out")
-
         if style.variant == "iec" {
             rect(
                 (-style.width / 2, -style.height / 2),
-                (
-                    style.width / 2,
-                    style.height / 2,
-                ),
+                (style.width / 2,
+                 style.height / 2,),
                 fill: white,
                 ..style,
             )
@@ -70,6 +56,17 @@
                 line((x, -style.height / 2), (x, style.height / 2), ..style)
             }
         }
+        
+        if position.len() == 1 {
+            move-to("bounds.west")
+            anchor("in", (rel: (-ctx.zap.style.pin.length, 0)))
+            move-to("bounds.east")
+            anchor("out", (rel: (+ctx.zap.style.pin.length, 0)))
+        }
+        
+        wire("bounds.west", "in")
+        wire("bounds.east", "out")
+
     }
 
     // Componant call
