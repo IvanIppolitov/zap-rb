@@ -33,6 +33,16 @@
             stroke: auto,
             lbind: true
         ),
+        arrow: (
+            variant: "default",
+            length: 1,
+            angle: 55deg,
+            ratio: (0.5, 0.4),
+            stroke: (
+               thickness: 0.8pt,
+               paint: black,
+            ),
+        ),
         debug: (
             radius: .7pt,
             stroke: (
@@ -182,9 +192,17 @@
             stroke: auto,
             width: 1.41,
             height: 1.41 / 3,
-            bumps: 3,
+            bumps: 4,
             extra: 0.01,
             fall: "zap-auto",
+            latex: (
+                height: 0.5,
+                width: 1.3,
+                bumps: 5,
+                stroke: (
+                    thickness: 0.034,
+                ),
+            ),
         ),
         heater: (
             variant: auto,
@@ -211,8 +229,12 @@
             width: 1.41,
             height: .47,
             zigs: 3,
-            shift: 0,
-            extra: 0.01,
+            extra: 0.001,
+            latex: (
+                stroke: (
+                    thickness: 0.034,
+                ),
+            ),
         ),
         rheostat: (
             variant: auto,
