@@ -44,7 +44,11 @@
     if zap-style.node.fill == auto {
         zap-style.node.fill = zap-style.stroke.paint
     }
-    cetz.styles.resolve(zap-style)
+    zap-style = cetz.styles.resolve(zap-style)
+    if zap-style.inductor.fall == "zap-auto" {
+        zap-style.inductor.fall = zap-style.wire.stroke.thickness / 2
+    }
+    return zap-style
 }
 
 #let set-params(..params) = {

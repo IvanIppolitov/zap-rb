@@ -6,7 +6,7 @@
         variant: "iec",
         scale: (x: 1.0, y: 1.0),
         stroke: (
-            thickness: .6pt,
+            thickness: .021,
             paint: black,
         ),
         label: (
@@ -183,8 +183,8 @@
             width: 1.41,
             height: 1.41 / 3,
             bumps: 3,
-            shift: 0.4pt,
             extra: 0.01,
+            fall: "zap-auto",
         ),
         heater: (
             variant: auto,
