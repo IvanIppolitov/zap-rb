@@ -31,7 +31,9 @@
 
         let base = (to: "base", rel: (0, -style.base-distance * sgn))
         let sep = (base, 99%, "e")
-        line(base, sep, mark: center-mark(symbol: if sgn == -1 { "<" } else { ">" }), ..style)
+        line(base, sep, ..style)
+        let mark-style = (stroke: (paint: style.stroke.paint), fill: style.stroke.paint)
+        mark((base, 50%, "e"), "e", symbol: if sgn == -1 { "<" } else { ">" }, anchor: "center", ..mark-style)
         wire(sep, "e")
         
         base = (to: "base", rel: (0, style.base-distance * sgn))

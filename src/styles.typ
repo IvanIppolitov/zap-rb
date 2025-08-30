@@ -6,7 +6,7 @@
         variant: "iec",
         scale: (x: 1.0, y: 1.0),
         stroke: (
-            thickness: .021,
+            thickness: 0.023,
             paint: black,
         ),
         label: (
