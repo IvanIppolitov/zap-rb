@@ -6,7 +6,7 @@
         variant: "iec",
         scale: (x: 1.0, y: 1.0),
         stroke: (
-            thickness: 0.023,
+            thickness: 0.021,
             paint: black,
         ),
         label: (
@@ -36,7 +36,7 @@
         arrow: (
             variant: "default",
             length: 1,
-            angle: 55deg,
+            angle: 60deg,
             ratio: (0.5, 0.4),
             stroke: (
                thickness: 0.8pt,
@@ -145,35 +145,33 @@
             height: .88 / 2.4,
             asymmetry: 25%,
         ),
-        earth: (
-            variant: auto,
-            scale: auto,
-            stroke: auto,
-            width: .53,
-            delta: .09,
-            spacing: .11,
-            distance: .28,
-        ),
-        frame: (
-            variant: auto,
-            scale: auto,
-            stroke: auto,
-            width: 0.46,
-            angle: 20deg,
-            depth: 0.25,
-            distance: 0.28,
-        ),
         ground: (
             variant: auto,
             scale: auto,
-            stroke: auto,
-            radius: 0.22,
-            distance: 0.28,
+            stroke: (
+                thickness: 0.03,
+                paint: auto,
+            ),
+            envelope-radius: 0.4,
+            radius: 0.26,
+            distance: 0.6,
+            number: 3,
+            width: 0.56,
+            stepv: 0.1,
+            steph: 0.16,
+            chassis: (
+                width: 0.6,
+                angle: 20deg,
+                depth: 0.25,
+            ),
         ),
         vcc: (
             variant: auto,
             scale: auto,
-            stroke: auto,
+            stroke: (
+                thickness: 0.04,
+                paint: auto,
+            ),
             angle: 35deg,
             radius: .4,
             distance: .6,
@@ -181,7 +179,13 @@
         vee: (
             variant: auto,
             scale: auto,
-            stroke: auto,
+            stroke: (
+                thickness: 0.04,
+                paint: auto,
+            ),
+            label: (
+                anchor: "south",
+            ),
             angle: 35deg,
             radius: .4,
             distance: .6,
@@ -196,11 +200,11 @@
             extra: 0.01,
             fall: "zap-auto",
             latex: (
-                height: 0.5,
+                height: 0.6,
                 width: 1.3,
                 bumps: 5,
                 stroke: (
-                    thickness: 0.034,
+                    thickness: 0.04,
                 ),
             ),
         ),

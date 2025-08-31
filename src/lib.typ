@@ -16,7 +16,7 @@
 #import "components/opamp.typ": opamp
 #import "components/switch.typ": switch
 #import "components/fuse.typ": afuse, fuse
-#import "components/supply.typ": earth, frame, ground, vcc, vee
+#import "components/supply.typ": vcc, vee, ground, tlground, rground, sground, tground, nground, pground, cground
 #import "components/inductor.typ": inductor
 #import "components/resistor.typ": heater, potentiometer, resistor, rheostat
 #import "components/source.typ": vsource, dvsource, acvsource, isource, disource, acisource

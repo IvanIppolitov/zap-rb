@@ -60,7 +60,7 @@
             })
             
             if variable {
-                variable-arrow(ratio: (0.55, 0.33))
+                variable-arrow(ratio: (0.55, 0.31))
             }
         }
         

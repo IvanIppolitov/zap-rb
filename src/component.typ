@@ -87,16 +87,17 @@
                   panic("Label dictionary needs at least content key")
                 }
                 let label-style = zap-style.label
+                let default-anchor = if style.at("label", default: none) != none { style.label.anchor } else {label-style.anchor}
                 let (label, distance, width, height, anchor) = if type(label) == dictionary {(
                     label.at("content", default: label-style.content),
                     label.at("distance", default: label-style.distance),
                     ..cetz.util.measure(ctx, label.at("content", default: label-style.content)),
-                    label.at("anchor", default: label-style.anchor)
+                    label.at("anchor", default: default-anchor)
                 )} else {(
                     label,
                     label-style.distance,
                     ..cetz.util.measure(ctx, label),
-                    label-style.anchor
+                    default-anchor
                 )}
                 let reverse = "south" in anchor
                 content("component." + anchor, anchor: get-label-anchor(p-rotate, zap-style.label.tolerance).at(if reverse { 1 } else { 0 }), label, padding: distance)
@@ -113,11 +114,6 @@
         })
 
         // Decorations
-
-        // Pins
-        // wire("in", "component.west")
-        // wire("component.east", "out")
-
         if i != none { current(ctx, i) }
         if f != none { flow(ctx, f) }
         if u != none { voltage(ctx, u, p-rotate) }
@@ -141,4 +137,5 @@
             }
         })
     })
+    move-to(position.last())
 }
