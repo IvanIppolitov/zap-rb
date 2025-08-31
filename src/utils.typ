@@ -30,6 +30,16 @@
     }
 }
 
+#let equal(a, b, digits: 7) = {
+    let a = a
+    let b = b
+    a.at(0) = calc.round(a.at(0), digits: digits)
+    a.at(1) = calc.round(a.at(1), digits: digits)
+    b.at(0) = calc.round(b.at(0), digits: digits)
+    b.at(1) = calc.round(b.at(1), digits: digits)
+    return a == b
+}
+
 #import "/src/dependencies.typ": cetz
 
 #let set-style(..style) = {

@@ -1,5 +1,5 @@
 #import "/src/dependencies.typ": cetz
-#import "/src/utils.typ": get-style
+#import "/src/utils.typ": get-style, equal
 #import cetz.draw: get-ctx, set-ctx, line
 
 
@@ -18,10 +18,10 @@
                 let sum = none
                 for index in range(ctx.shared-state.zap.wires.len()) {
                     let branch = ctx.shared-state.zap.wires.at(index)
-                    if points.first() == branch.first() {
+                    if equal(points.first(), branch.first()) {
                         points.remove(0)
                         sum = (points.rev() + branch).rev()
-                    } else if points.first() == branch.last() {
+                    } else if equal(points.first(), branch.last()) {
                         points.remove(0)
                         sum = branch + points
                     }
@@ -34,10 +34,10 @@
                 sum = none
                 for index in range(ctx.shared-state.zap.wires.len()) {
                     let branch = ctx.shared-state.zap.wires.at(index)
-                    if points.last() == branch.first() {
+                    if equal(points.last(), branch.first()) {
                         points.pop()
                         sum = points + branch
-                    } else if points.last() == branch.last() {
+                    } else if equal(points.last(), branch.last()) {
                         points.pop()
                         sum = branch + points.rev()
                     }
