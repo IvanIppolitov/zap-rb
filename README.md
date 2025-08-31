@@ -12,6 +12,9 @@
 - `set-style()` works (customize each component)
 - `set-params()` for configuring (at the moment only `debug` is available)
 
+#### Grounds types:
+<img alt="Grounds" src="https://github.com/IvanIppolitov/zap-rb/blob/main/examples/grounds.svg" width="500px">
+
 [Documentation](https://zap.grangelouis.ch) — [Examples](https://zap.grangelouis.ch/examples) — [Forum](https://github.com/l0uisgrange/zap/discussions/categories/q-a)
 
 ## Simple examples
