@@ -7,6 +7,23 @@
     (end: ((pos: 50%, symbol: symbol, fill: black, anchor: "center"), (pos: 0%, symbol: ">", scale: 0)))
 }
 
+#let pretty-arrow(node, height, fill: none) = {
+    group(name: "arrow", {
+        set-origin(node)
+        let width = height * 0.7
+        let tip = (height / 2, 0)
+        let side1 = (-height / 2, +width / 2)
+        let side2 = (-height / 2, -width / 2)
+
+        let k = (0.05, 0.14, 0.36)
+        merge-path(stroke: none, fill: fill, {
+            bezier(side1, tip, (-height * k.at(0), +width * k.at(1)))
+            bezier(tip, side2, (-height * k.at(0), -width * k.at(1)))
+            bezier-through(side2, (-height * k.at(2), 0), side1)
+        })
+    })
+}
+
 #let variable-arrow(style: (:)) = {
     scope({
         get-ctx(ctx => {
@@ -28,20 +45,7 @@
             if style.variant == "pretty" {
                 let height = 0.26 * style.scale
                 line((tie, 0), (style.length - height / 2, 0), stroke: style.stroke)
-                group(name: "arrow", {
-                    set-origin((style.length - height / 2, 0))
-                    let width = height * 0.7
-                    let tip = (height / 2, 0)
-                    let side1 = (-height / 2, +width / 2)
-                    let side2 = (-height / 2, -width / 2)
-
-                    let k = (0.05, 0.14, 0.36)
-                    merge-path(stroke: none, fill: style.stroke.paint, {
-                        bezier(side1, tip, (-height * k.at(0), +width * k.at(1)))
-                        bezier(tip, side2, (-height * k.at(0), -width * k.at(1)))
-                        bezier-through(side2, (-height * k.at(2), 0), side1)
-                    })
-                })
+                pretty-arrow((style.length - height / 2, 0), height, fill: style.stroke.paint)
             } else {
                 line((tie, 0), (style.length, 0), mark: ( end: ">", fill: style.stroke.paint, scale: style.scale), stroke: style.stroke)
             }
