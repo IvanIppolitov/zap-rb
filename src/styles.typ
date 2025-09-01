@@ -31,10 +31,13 @@
         wire: (
             variant: auto,
             stroke: auto,
-            lbind: true
+            lbind: true,
+            tie: 0.001,
+            min-length: 0.01,
         ),
         arrow: (
             variant: "default",
+            scale: 0.8,
             length: 1,
             angle: 60deg,
             ratio: (0.5, 0.4),
@@ -199,13 +202,16 @@
             bumps: 4,
             extra: 0.01,
             fall: "zap-auto",
-            latex: (
+            pretty: (
                 height: 0.6,
                 width: 1.3,
                 bumps: 5,
                 stroke: (
                     thickness: 0.04,
                 ),
+            ),
+            arrow: (
+                ratio: (0.55, 0.31),
             ),
         ),
         heater: (
@@ -234,10 +240,15 @@
             height: .47,
             zigs: 3,
             extra: 0.001,
-            latex: (
+            pretty: (
                 stroke: (
                     thickness: 0.034,
                 ),
+            ),
+            arrow: (
+                angle: 63deg,
+                length: 1.4,
+                ratio: (0.5, 0.5),
             ),
         ),
         rheostat: (

@@ -60,7 +60,7 @@
             })
             
             if variable {
-                variable-arrow(ratio: (0.55, 0.31))
+                variable-arrow(style: style.at("arrow", default: (:)))
             }
         }
         

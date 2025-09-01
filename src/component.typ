@@ -79,7 +79,7 @@
         })
 
         copy-anchors("component")
-
+        
         // Label
         on-layer(2, {
             if label != none {

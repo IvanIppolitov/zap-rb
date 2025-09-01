@@ -44,7 +44,7 @@
             )
         }
         if variable {
-            variable-arrow()
+            variable-arrow(style: style.at("arrow", default: (:)))
         } else if adjustable {
             let arrow-length = .8
             anchor("a", (0, style.height / 2 + arrow-length))
@@ -66,7 +66,6 @@
         
         wire("bounds.west", "in")
         wire("bounds.east", "out")
-
     }
 
     // Componant call
