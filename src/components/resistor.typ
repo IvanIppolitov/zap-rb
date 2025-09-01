@@ -3,7 +3,7 @@
 #import "/src/components/wire.typ": wire
 #import "/src/dependencies.typ": cetz
 #import cetz.draw: anchor, line, rect, move-to, circle, compound-path
-#import "/src/mini.typ": variable-arrow
+#import "/src/mini.typ": variable-arrow, adjustable-arrow
 
 
 #let resistor-base(uid, name, node, variable: false, heatable: false, adjustable: false, ..params) = {
@@ -46,9 +46,10 @@
         if variable {
             variable-arrow(style: style.at("arrow", default: (:)))
         } else if adjustable {
-            let arrow-length = .8
-            anchor("a", (0, style.height / 2 + arrow-length))
-            line("a", (0, style.height / 2), mark: (end: ">", fill: black), fill: none)
+            // let arrow-length = .8
+            // anchor("a", (0, style.height / 2 + arrow-length))
+            // line("a", (0, style.height / 2), mark: (end: ">", fill: black), fill: none)
+            adjustable-arrow((0, style.height / 2))
         }
         if heatable {
             for i in range(3) {

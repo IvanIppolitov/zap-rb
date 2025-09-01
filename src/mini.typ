@@ -1,13 +1,13 @@
 #import "dependencies.typ": cetz
 #import "components/wire.typ": wire
 #import "utils.typ": get-style
-#import cetz.draw: anchor, hobby, line, rotate, scope, group, set-origin, set-style, get-ctx, merge-path, bezier, bezier-through
+#import cetz.draw: anchor, hobby, line, rotate, scope, group, set-origin, set-style, get-ctx, merge-path, bezier, bezier-through, move-to
 
 #let center-mark(symbol: ">") = {
     (end: ((pos: 50%, symbol: symbol, fill: black, anchor: "center"), (pos: 0%, symbol: ">", scale: 0)))
 }
 
-#let pretty-arrow(node, height, fill: none) = {
+#let pretty-mark(node, height, fill: none) = {
     group(name: "arrow", {
         set-origin(node)
         let width = height * 0.7
@@ -22,6 +22,14 @@
             bezier-through(side2, (-height * k.at(2), 0), side1)
         })
     })
+}
+
+#let pretty-arrow(..position, style: (:)) = {
+    let position = position.pos()
+    let height = 0.26 * style.scale
+    position.last() = (position.last().at(0) - height / 2, position.last().at(1))
+    line(..position, stroke: style.stroke)
+    pretty-mark(position.last(), height, fill: style.stroke.paint)
 }
 
 #let variable-arrow(style: (:)) = {
@@ -43,11 +51,34 @@
 
             let tie = get-style(ctx).wire.tie
             if style.variant == "pretty" {
-                let height = 0.26 * style.scale
-                line((tie, 0), (style.length - height / 2, 0), stroke: style.stroke)
-                pretty-arrow((style.length - height / 2, 0), height, fill: style.stroke.paint)
+                pretty-arrow((tie, 0), (style.length, 0), style: style)
             } else {
                 line((tie, 0), (style.length, 0), mark: ( end: ">", fill: style.stroke.paint, scale: style.scale), stroke: style.stroke)
+            }
+            wire((0,0), (tie, 0))
+        })
+    })
+    anchor("tip", "tip")
+    anchor("wiper", "wiper")
+}
+
+#let adjustable-arrow(node, style: (:)) = {
+    scope({
+        get-ctx(ctx => {
+            let style = cetz.util.merge-dictionary(get-style(ctx).arrow, style)
+            let length = style.adjustable.length
+            
+            anchor("tip", node)
+            anchor("wiper", (to: node, rel: (0, +length)))
+
+            set-origin("wiper")
+            rotate(-90deg)
+
+            let tie = get-style(ctx).wire.tie
+            if style.variant == "pretty" {
+                pretty-arrow((tie, 0), (length, 0), style: style)
+            } else {
+                line((tie, 0), (length, 0), mark: ( end: ">", fill: style.stroke.paint, scale: style.scale), stroke: style.stroke)
             }
             wire((0,0), (tie, 0))
         })

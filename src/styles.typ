@@ -42,8 +42,11 @@
             angle: 60deg,
             ratio: (0.5, 0.4),
             stroke: (
-               thickness: 0.8pt,
-               paint: black,
+                thickness: 0.8pt,
+                paint: black,
+            ),
+            adjustable: (
+                length: 0.5,
             ),
         ),
         debug: (
