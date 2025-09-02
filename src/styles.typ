@@ -42,7 +42,7 @@
             angle: 60deg,
             ratio: (0.5, 0.4),
             stroke: (
-                thickness: 0.8pt,
+                thickness: 0.021,
                 paint: black,
             ),
             adjustable: (

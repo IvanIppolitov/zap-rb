@@ -1,6 +1,6 @@
 #import "dependencies.typ": cetz
 #import "components/wire.typ": wire
-#import "utils.typ": get-style
+#import "utils.typ": get-style, to-points
 #import cetz.draw: anchor, hobby, line, rotate, scope, group, set-origin, set-style, get-ctx, merge-path, bezier, bezier-through, move-to
 
 #let center-mark(symbol: ">") = {
@@ -53,7 +53,11 @@
             if style.variant == "pretty" {
                 pretty-arrow((tie, 0), (style.length, 0), style: style)
             } else {
-                line((tie, 0), (style.length, 0), mark: ( end: ">", fill: style.stroke.paint, scale: style.scale), stroke: style.stroke)
+                let stroke = style.stroke
+                if type(stroke.thickness) == float {
+                    stroke.thickness = to-points(ctx, stroke.thickness)
+                }
+                line((tie, 0), (style.length, 0), mark: ( end: ">", fill: style.stroke.paint, scale: style.scale), stroke: stroke)
             }
             wire((0,0), (tie, 0))
         })
@@ -78,7 +82,11 @@
             if style.variant == "pretty" {
                 pretty-arrow((tie, 0), (length, 0), style: style)
             } else {
-                line((tie, 0), (length, 0), mark: ( end: ">", fill: style.stroke.paint, scale: style.scale), stroke: style.stroke)
+                let stroke = style.stroke
+                if type(stroke.thickness) == float {
+                    stroke.thickness = to-points(ctx, stroke.thickness)
+                }
+                line((tie, 0), (length, 0), mark: ( end: ">", fill: style.stroke.paint, scale: style.scale), stroke: stroke)
             }
             wire((0,0), (tie, 0))
         })
